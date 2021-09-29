@@ -7,14 +7,14 @@ let db;
 
 if (process.env.NODE_ENV === "production") {
   db = new Client({
-    connectionString: "postgresql://postgres:H%40L!M@localhost:5432/netflix",
+    connectionString: getDatabaseUri(),
     ssl: {
       rejectUnauthorized: false,
     },
   });
 } else {
   db = new Client({
-    connectionString: "postgresql://postgres:H%40L!M@localhost:5432/netflix",
+    connectionString: getDatabaseUri(),
   });
 }
 
