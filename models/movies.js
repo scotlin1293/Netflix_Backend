@@ -12,6 +12,17 @@ class Movie {
    * Throws UnauthorizedError is user not found or wrong password.
    **/
 
+  static async getAllforUser(username) {
+    const allMovies = await db.query(
+      `SELECT movies.movie_id, name, img
+           FROM favorites INNER JOIN movies on movies.movie_id = favorites.movie_id
+           WHERE favorites.username = $1`,
+      [username]
+    );
+
+    return allMovies.rows;
+  }
+
   static async favoriteMovie(id, img, name, username) {
     const duplicateCheck = await db.query(
       `SELECT *

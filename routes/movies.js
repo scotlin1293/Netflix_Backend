@@ -36,4 +36,13 @@ router.delete("/:id", ensureLoggedIn, async function (req, res, next) {
   }
 });
 
+router.get("/", ensureLoggedIn, async function (req, res, next) {
+  try {
+    let movies = await Movie.getAllforUser(res.locals.user.username);
+    return res.json({ movies });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 module.exports = router;
