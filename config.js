@@ -13,8 +13,7 @@ const PORT = +process.env.PORT || 3001;
 function getDatabaseUri() {
   return process.env.NODE_ENV === "test"
     ? "netflix_test"
-    : process.env.DATABASE_URL ||
-        "postgresql://postgres:H%40L!M@localhost:5432/netflix";
+    : process.env.DATABASE_URL || "netflix";
 }
 
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
